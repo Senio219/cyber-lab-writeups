@@ -20,7 +20,10 @@ nmap -sV -oN meta-scan.txt 10.10.10.4
 | 445 | Samba 3.X-4.X | Possible usermap command injection, CVE-2007-2447 (version not confirmed) | High |
 | 23 | Linux telnetd | Credentials sent in plaintext | High |
 
-<img width="880" height="156" alt="image" src="https://github.com/user-attachments/assets/67c1bf59-ad8a-4439-9f3b-6b94dbec69ed" />
+<img width="594" height="378" alt="Screenshot 2026-11-23 203711" src="https://github.com/user-attachments/assets/782385f5-0102-4cbf-95f2-c9eef62e221a" />
+
+
+
 
 
 
