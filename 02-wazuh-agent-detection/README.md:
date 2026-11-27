@@ -1,0 +1,45 @@
+03 — Wazuh Agent Deployment and Brute-Force Detection
+
+**Goal:** Deploy a Wazuh agent on a monitored host and confirm it generates real alerts for suspicious authentication activity.
+
+**Setup:** Wazuh manager (10.10.10.5) and a fresh Rocky Linux 10 host, `rocky-target` (10.10.10.6), both on the isolated LabNet (10.10.10.0/24). Attempts were made from Kali (10.10.10.3).
+
+**Steps taken:**
+
+```
+rpm --import https://packages.wazuh.com/key/GPG-KEY-WAZUH
+
+tee /etc/yum.repos.d/wazuh.repo << 'EOF'
+[wazuh]
+gpgcheck=1
+gpgkey=https://packages.wazuh.com/key/GPG-KEY-WAZUH
+enabled=1
+name=EL-\$releasever - Wazuh
+baseurl=https://packages.wazuh.com/4.x/yum/
+protect=1
+EOF
+
+WAZUH_MANAGER='10.10.10.5' dnf install -y wazuh-agent
+systemctl daemon-reload
+systemctl enable wazuh-agent
+systemctl start wazuh-agent
+```
+
+Confirmed the agent showed **Active** in the Wazuh dashboard under Agents.
+
+Then, from Kali, attempted several SSH logins to `rocky-target` with an intentionally wrong password:
+
+```
+ssh Senio@10.10.10.6
+```
+
+
+
+**Result:** Wazuh generated multiple correlated alerts within seconds:
+- `sshd: authentication failed`
+- `unix_chkpwd: Password check failed`
+- `PAM: User login failed`
+- `syslog: User missed the password` (a higher-level summary alert)
+
+(paste your expanded log-detail screenshot here)
+
