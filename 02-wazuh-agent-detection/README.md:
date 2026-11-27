@@ -33,7 +33,7 @@ Then, from Kali, attempted several SSH logins to `rocky-target` with an intentio
 ssh Senio@10.10.10.6
 ```
 
-
+https://github.com/Senio219/cyber-lab-writeups/blob/5ee6402d2750ecf520e5679110e97d0d1cdf68a0/Screenshot%202026-11-26%20023254.png
 
 **Result:** Wazuh generated multiple correlated alerts within seconds:
 - `sshd: authentication failed`
@@ -41,5 +41,5 @@ ssh Senio@10.10.10.6
 - `PAM: User login failed`
 - `syslog: User missed the password` (a higher-level summary alert)
 
-(paste your expanded log-detail screenshot here)
+
 
